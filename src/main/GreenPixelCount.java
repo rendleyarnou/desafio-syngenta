@@ -29,16 +29,16 @@ public class GreenPixelCount {
 		// Conta a quantidade de pixels verdes que existem na imagem
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				pixelValue = imagem.getRGB(x, y); // pega o valor do pixel altura X largura
-				red = (pixelValue >> 16) & 0xFF; // pega o valor do vermelho & converte de inteiro para hexa
-				green = (pixelValue >> 8) & 0xFF; // pega o valor do verde & converte de inteiro para hexa
-				blue = pixelValue & 0xFF; // pega o valor do azul & converte de inteiro para hexa
+				pixelValue = imagem.getRGB(x, y); // pega o valor do pixel altura X largura como inteiro
+				red = (pixelValue >>> 16) & 0xFF; // pega o valor do vermelho & converte para inteiro
+				green = (pixelValue >>> 8) & 0xFF; // pega o valor do verde & converte para inteiro
+				blue = (pixelValue >>> 0) & 0xFF; // pega o valor do azul & converte para inteiro
 
-				if ((0 < red && red < 150) && (0 < green) && (red < green) && (blue == 0)) { // Confere se é verde
+				if ((0 < red && red < 150) && (0 < green) && (red < green) && (blue == 0)) { // Confere se o pixel é verde
 					qtdGreen += 1;
-					redOutput = (pixelValue >> 16) & 0xFF;
-					greenOutput = (pixelValue >> 8) & 0xFF;
-					blueOutput = pixelValue & 0xFF;
+					redOutput = (pixelValue >>> 16) & 0xFF;
+					greenOutput = (pixelValue >>> 8) & 0xFF;
+					blueOutput = (pixelValue >>> 0) & 0xFF;
 				}
 			}
 		}
@@ -48,8 +48,6 @@ public class GreenPixelCount {
 		System.out.println("HEX da cor:");
 		System.out.println("| " + "R" + "  |  " + "G" + "  |  "  + "B" + " |" );
 		System.out.println("| " + redOutput + " | " + greenOutput + " |  " + blueOutput + " |");
-//		System.out.println("Valor RGB: " + "R:" + redOutput + " " + "G:" + greenOutput + " " + "B:" + blueOutput);
-
 		
 //		String matriz[][] = new String[420][300];
 //
